@@ -1,0 +1,779 @@
+--- Title :-        Restaurant Ratings Analysis
+--- Created by :-   Sanjib Kumar Nayak
+
+/*
+𝗜𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻:
+► In this project, we will be analyzing restaurant ratings data to gain insights into the performance of various restaurants.
+► We will use SQL to extract, transform and analyze the data.
+► The insights gained from this analysis will be used to understand the factors that influence a restaurant's rating and make recommendations for improvement.
+► We will examine the relationship between different variables such as the location, cuisine and price range of the restaurants and their ratings.
+► We will also do sentiment analysis to analyse most favorable restaurants of customers
+
+About the dataset :
+🍸 We found this dataset from Maven Analytics. Restaurant ratings in Mexico by real consumers from 2012 with 5 CSV Files.
+
+🍸Customer Details: The table contains customer information.
+
+🍸 Customer preference: This table contains customer cuisine preferences.
+
+🍸 Restaurants: The dataset includes restaurant details
+
+🍸 Restaurant's Cuisine: The table contains cuisines offered by each restaurant.
+
+🍸 Customer Ratings: This dataset is the main table in the project. It includes information regarding customer ratings.
+
+𝗜𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻:
+🍰 In this project, we will be analyzing restaurant ratings data to gain insights into the performance of various restaurants.
+
+🍰 We will use SQL to extract, transform and analyze the data.
+
+🍰 The insights gained from this analysis will be used to understand the factors that influence a restaurant's rating and make recommendations for improvement.
+
+🍰 We will examine the relationship between different variables such as the location, cuisine and price range of the restaurants and their ratings.
+
+𝗔𝗽𝗽𝗿𝗼𝗮𝗰𝗵:
+
+🍕 Acquired the restaurant ratings data from a publicly available source and import it into a SQL database.
+
+🍕 Used SQL to clean the data and ensure that it is in a format that can be easily analyzed. This will involve tasks such as removing duplicate records, handling missing values, and standardizing data formats.
+
+🍕 Use SQL to extract relevant information from the data, such as the average rating for each restaurant, the number of reviews, and the location of the restaurant.
+
+🍕 Analyzed the datasets using advanced SQL to identify patterns and trends in the data.
+
+🍕 We analyzed various metrics using SQL commands & functions.
+
+🍕 We used the insights gained from the analysis to make recommendations for improvement for the restaurants, and suggest ways in which the data can be used to drive business decisions.
+
+𝗦𝗤𝗟 𝗙𝘂𝗻𝗰𝘁𝗶𝗼𝗻𝘀 𝘂𝘀𝗲𝗱:
+
+In this project, we used various SQL commands & functions like:
+
+DDL
+
+DML
+
+Joins
+
+Subqueries
+
+Multiple joins
+
+Case statements
+
+Logical conditions
+
+Nested subqueries
+
+Windows functions
+
+𝗞𝗲𝘆 𝗜𝗻𝘀𝗶𝗴𝗵𝘁𝘀:
+
+𝘾𝙪𝙨𝙩𝙤𝙢𝙚𝙧 𝙙𝙚𝙢𝙤𝙜𝙧𝙖𝙥𝙝𝙞𝙘𝙨: 🍟 62% customers are from "San Luis Potosi".
+
+🍟 70% customers have medium budget & 0.4% customers have high budget.
+
+🍟 Most of the drinkers & smokers are students and they are casual drinkers or social drinkers.
+
+🍟 80% of our customers are in the age bucket of 18-25
+
+🍟 Most preferred cuisines are Mexican, American, Pizzeria, Cafeteria & Coffee shop.
+
+𝙍𝙚𝙨𝙩𝙖𝙪𝙧𝙖𝙣𝙩 𝘿𝙚𝙩𝙖𝙞𝙡𝙨:
+
+🧁There are a total 129 restaurants & majority are in the city of "San Luis Potosi".
+
+🧁Only 41 restaurants are serving drinks & 65 restaurants don't have parking.
+
+🧁Most restaurants offer cuisines like Mexican, Bar, Cafeteria, Fast Food, Brewery, Seafood, Burgers.
+
+🧁18% of restaurants are of High budget, 49% of them are of Medium budget & 33% are low budget.
+
+𝙍𝙖𝙩𝙞𝙣𝙜𝙨 𝙖𝙣𝙖𝙡𝙮𝙨𝙞𝙨:
+
+🍷 There are 26 restaurants who received an average overall rating of more than 1.50.
+
+🍷 44% responses from the customers were positive for the food experience.
+
+🍷 22% responses from the customers were negative for overall experience.
+
+🍷 131 customers are visiting their local restaurants & 14 customers are visiting outside of their locality.
+
+🍷 Customers from cities of Ciudad Victoria, Cuernavaca & jiutepec are visiting restaurants of San Luis Potosi.
+
+🍷 We analyzed the best restaurants for each cuisine based on average ratings.
+
+🍷 We analyzed bad restaurants for each cuisine based on average ratings.
+
+🍷 For overall & food experience best average cuisine is International & for food experience it is Mexican.
+
+🍷 There are 293 responses (25%) of customers who gave the highest ratings in all the experiences.
+
+𝗦𝘁𝗿𝗮𝘁𝗲𝗴𝗶𝗲𝘀:
+
+⭐ We found that the average rating for food experience in our dataset was around 1.21/2.00. This indicates that overall, customers were pleased with their dining experiences. But some restaurants didn't receive good ratings for the service. So the restaurants should focus on improving their service experience.
+
+⭐ Most of the good restaurants are in the city of San Luis Potosi for which outsiders were travelling to this city. We can improve our food & services in other cities as well.
+
+⭐ American cuisine is the second most preferred cuisine by customers but we don't have that many restaurants with american cuisine. We can improve the business in that segment as well.
+
+⭐ Students & teenagers are more into drinking & smoking so we can plan some marketing strategy for them like special student entry or student discount to acquire customers.
+
+𝗙𝗶𝗹𝗲𝗻𝗮𝗺𝗲: 𝗖𝗿𝗲𝗮𝘁𝗶𝗻𝗴 𝘁𝗮𝗯𝗹𝗲𝘀
+
+This SQL queries creates the important tables & imports the CSV files.
+*/
+
+--- 1) Creating customer_ratings Table 
+
+CREATE TABLE Customer_Ratings (
+Consumer_ID  	VARCHAR(50),
+Restaurant_ID	VARCHAR(50),
+Overall_Rating	INT,
+Food_Rating		INT,
+Service_Rating	INT
+)
+
+Select * FROM customer_ratings
+
+
+--- 2) Creating customer_details table
+
+CREATE TABLE Customer_Details(
+Consumer_ID 			Varchar(50),
+City					Varchar(50),
+State					Varchar(50),
+Country					Varchar(50),
+Latitude				Decimal,
+Longitude				Decimal,
+Smoker					Varchar(50),
+Drink_Level				Varchar(50),
+Transportation_Method	Varchar(50),
+Marital_Status			Varchar(50),
+Children				Varchar(50),
+Age						INT,
+Occupation				Varchar(50),
+Budget					Varchar(50)
+)
+
+--- 3) Creating Customer Preference table
+
+CREATE TABLE Customer_Preference(
+Consumer_ID			Varchar(50),
+Preferred_Cuisine	Varchar(50)
+)
+
+
+--- 4) Creating restaurants table
+
+CREATE TABLE Restaurants (
+Restaurant_ID  		Varchar(50),
+Name				Varchar(100),
+City				Varchar(50),
+State				Varchar(50),
+Country				Varchar(50),
+Zip_Code			Varchar(50),
+Latitude			Decimal,
+Longitude			Decimal,
+Alcohol_Service		Varchar(50),
+Smoking_Allowed		Varchar(50),
+Price				Varchar(50),
+Franchise			Varchar(50),
+Area				Varchar(50),
+Parking				Varchar(100)
+)
+
+
+--- Creating restaurant_cuisines Table 
+
+CREATE TABLE restaurant_cuisines (
+Restaurant_ID	Varchar(50),
+Cuisine			Varchar(50)
+)
+
+𝗙𝗶𝗹𝗲𝗻𝗮𝗺𝗲: 𝗖𝘂𝘀𝘁𝗼𝗺𝗲𝗿 𝗗𝗲𝗺𝗼𝗴𝗿𝗮𝗽𝗵𝗶𝗰𝘀 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀
+
+This SQL queries analyzes the customers & their cuisines preferences. This helps to understand the types of customers & their preferences.
+*/
+
+
+--- Q1) Total Customers in each state
+SELECT 
+		 State,
+		 count(consumer_id) as Total_Customers
+FROM 	 customer_details
+GROUP BY State
+Order BY Total_Customers DESC
+	
+	
+--- Q2) Total Customers in each city
+SELECT 
+		 city,
+		 count(consumer_id) as Total_Customers
+FROM 	 customer_details
+GROUP BY city
+Order BY Total_Customers DESC	
+
+--- Q2) Total Customers in each city
+SELECT 
+		 city,
+		 count(consumer_id) as Total_Customers
+FROM 	 customer_details
+GROUP BY city
+Order BY Total_Customers DESC	
+
+
+--- Q3) Budget level of customers
+SELECT 
+		 budget,
+		 count(consumer_id) as Total_Customers
+FROM 	 customer_details
+WHERE 	 budget is not null
+GROUP BY budget
+
+--- Q4) Total Smokers by Occupation
+SELECT 
+		 occupation,
+		 count(consumer_id) as Smokers
+FROM 	 customer_details
+WHERE 	 smoker = 'Yes'
+GROUP BY occupation
+
+--- Q5) Drinking level of students
+SELECT 
+		 drink_level,
+		 count(consumer_id) as student_count
+FROM 	 customer_details
+WHERE 	 occupation = 'Student' and occupation is not null
+GROUP BY drink_level
+
+--- Q6) Transportation methods of customers
+SELECT 
+		 transportation_method,
+		 count(consumer_id) as Total_Customers
+FROM 	 customer_details
+WHERE 	 transportation_method is not null	
+GROUP BY transportation_method
+Order BY Total_Customers DESC
+
+--- Q7) Adding Age Bucket Column 
+ALTER TABLE customer_details 
+ADD COLUMN  Age_Bucket Varchar(50)
+
+
+--- Q8) Updating the Age Bucket column with case when condition
+UPDATE customer_details
+SET age_bucket = CASE WHEN age > 60 then '61 and Above'
+					  WHEN age > 40 then '41 - 60'	
+					  WHEN age > 25 then '26 - 40'
+					  WHEN age >= 18 then '18 - 25'
+					  END
+WHERE age_bucket is null					  
+	
+	
+--- Q9) Total customers in each age bucket
+SELECT 
+		 age_bucket,
+		 count(consumer_id) as Total_Customers
+FROM 	 customer_details
+GROUP BY age_bucket
+Order BY age_bucket
+	
+
+--- Q10) Total customers count & smokers count in each age percent 
+SELECT 
+		 age_bucket,
+		 count(consumer_id) as total,
+		 count(case when smoker = 'Yes' Then consumer_id end) as smokerscount
+FROM 	 customer_details
+GROUP BY age_bucket
+Order BY age_bucket	
+
+
+SELECT * FROM customer_preference
+	
+--- Q11) Top 20 preferred cuisines
+SELECT 
+		 preferred_cuisine,
+		 count(consumer_id) AS total_customers
+FROM 	 customer_preference	
+GROUP BY preferred_cuisine
+ORDER BY total_customers DESC
+LIMIT 20
+
+
+--- Q12) Preferred cuisines of each customer
+SELECT 
+		consumer_id,
+		count(preferred_cuisine) AS total_cuisines,
+		String_agg (preferred_cuisine, ',') as Cuisines
+FROM 	customer_preference
+GROUP BY consumer_id
+ORDER BY total_cuisines DESC
+
+
+--- Q13) Customer Budget analysis for each cuisine
+
+SELECT
+			b.preferred_cuisine,
+			SUM(CASE WHEN a.budget = 'High' Then 1 Else 0 END) AS High,
+			SUM(CASE WHEN a.budget = 'Medium' Then 1 Else 0 END) AS Medium,
+			SUM(CASE WHEN a.budget = 'Low' Then 1 Else 0 END) AS Low
+FROM 		customer_details AS a
+INNER JOIN 	customer_preference AS b
+ON 			a.consumer_id = b.consumer_id
+GROUP BY	b.preferred_cuisine
+ORDER BY 	b.preferred_cuisine
+
+
+--- Q14) Finding out count of each cuisine in each state
+
+SELECT
+		a.state,
+		b.preferred_cuisine
+FROM 	customer_details AS a
+INNER JOIN customer_preference AS b
+ON a.consumer_id = b.consumer_id
+GROUP BY a.state, b.preferred_cuisine
+ORDER BY a.state
+
+SELECT
+		b.preferred_cuisine,
+		SUM(CASE WHEN a.state = 'Morelos' Then 1 Else 0 END) AS Morelos,
+		SUM(CASE WHEN a.state = 'San Luis Potosi' Then 1 Else 0 END) AS San_Luis_Potosi,
+		SUM(CASE WHEN a.state = 'Tamaulipas' Then 1 Else 0 END) AS Tamaulipas
+FROM 	customer_details AS a
+INNER JOIN customer_preference AS b
+ON a.consumer_id = b.consumer_id
+GROUP BY b.preferred_cuisine
+ORDER BY b.preferred_cuisine
+
+
+--- Q15) Finding out count of each cuisine in each age bucket
+SELECT
+		b.preferred_cuisine,
+		SUM(CASE WHEN a.age_bucket = '18 - 25' Then 1 Else 0 END) AS "18 - 25",
+		SUM(CASE WHEN a.age_bucket = '26 - 40' Then 1 Else 0 END) AS "26 - 40",
+		SUM(CASE WHEN a.age_bucket = '41 - 60' Then 1 Else 0 END) AS "41 - 60",
+		SUM(CASE WHEN a.age_bucket = '61 and Above' Then 1 Else 0 END) AS "61+"
+FROM 	customer_details AS a
+INNER JOIN customer_preference AS b
+ON a.consumer_id = b.consumer_id
+GROUP BY b.preferred_cuisine
+ORDER BY b.preferred_cuisine
+
+𝗙𝗶𝗹𝗲𝗻𝗮𝗺𝗲: 𝗥𝗲𝘀𝘁𝗮𝘂𝗿𝗮𝗻𝘁 𝗗𝗲𝘁𝗮𝗶𝗹𝘀
+
+This SQL queries analyzes the restaurants & their cuisine type. This helps to understand the types of restaurants & their cuisines.
+*/
+
+
+
+--- Q16) Total restaurants in each state
+SELECT 
+		 State,
+		 count(restaurant_id) as Total_restaurant
+FROM 	 restaurants
+GROUP BY State
+Order BY Total_restaurant DESC
+
+--- Q17) Total restaurants in each city
+SELECT 
+		 city,
+		 count(restaurant_id) as Total_restaurant
+FROM 	 restaurants
+GROUP BY city
+Order BY Total_restaurant DESC
+
+--- Q18) Restaurants count by alcohol service 
+SELECT 
+		 alcohol_service,
+		 count(restaurant_id) as Total_restaurant
+FROM 	 restaurants
+GROUP BY alcohol_service
+Order BY Total_restaurant DESC
+
+--- Q19) Restaurants count by smoking allowed
+SELECT 
+		 smoking_allowed,
+		 count(restaurant_id) as Total_restaurant
+FROM 	 restaurants
+GROUP BY smoking_allowed
+Order BY Total_restaurant DESC
+
+--- Q20) Alcohol & Smoking analysis
+SELECT 
+		 alcohol_service,smoking_allowed,
+		 count(restaurant_id) as Total_restaurant
+FROM 	 restaurants
+GROUP BY alcohol_service,smoking_allowed
+Order BY Total_restaurant DESC
+
+--- Q21)Restaurants count by Price
+SELECT 
+		 price,
+		 count(restaurant_id) as Total_restaurant
+FROM 	 restaurants
+GROUP BY price
+Order BY Total_restaurant DESC
+
+--- Q22)Restaurants count by packing
+SELECT 
+		 parking,
+		 count(restaurant_id) as Total_restaurant
+FROM 	 restaurants
+GROUP BY parking
+Order BY Total_restaurant DESC
+
+--- Q23) Count of Restaurants by cuisines
+SELECT 
+		cuisine,
+		count(restaurant_id) AS Total_restaurant
+FROM 	restaurant_cuisines
+GROUP BY cuisine
+ORDER BY Total_restaurant DESC
+
+--- Q24) Preferred cuisines of each customer
+SELECT 
+		name,
+		count(cuisine) AS Total_cuisines,
+		String_agg (cuisine, ',') as Cuisines
+FROM 	restaurant_cuisines as a
+INNER JOIN restaurants as b
+ON a.restaurant_id = b.restaurant_id
+GROUP BY name
+ORDER BY Total_cuisines DESC
+
+
+--- Q25) Restaurant price analysis for each cuisine
+
+SELECT
+		b.cuisine,
+		SUM(CASE WHEN a.price = 'High' Then 1 Else 0 END) AS High,
+		SUM(CASE WHEN a.price = 'Medium' Then 1 Else 0 END) AS Medium,
+		SUM(CASE WHEN a.price = 'Low' Then 1 Else 0 END) AS Low
+FROM 	restaurants AS a
+INNER JOIN restaurant_cuisines AS b
+ON a.restaurant_id = b.restaurant_id
+GROUP BY b.cuisine
+ORDER BY b.cuisine
+
+
+--- Q26) Finding out count of each cuisine in each state
+
+SELECT
+		b.cuisine,
+		SUM(CASE WHEN a.state = 'Morelos' Then 1 Else 0 END) AS Morelos,
+		SUM(CASE WHEN a.state = 'San Luis Potosi' Then 1 Else 0 END) AS San_Luis_Potosi,
+		SUM(CASE WHEN a.state = 'Tamaulipas' Then 1 Else 0 END) AS Tamaulipas
+FROM 	restaurants AS a
+INNER JOIN restaurant_cuisines AS b
+ON a.restaurant_id = b.restaurant_id
+GROUP BY  b.cuisine
+ORDER BY  b.cuisine
+
+𝗙𝗶𝗹𝗲𝗻𝗮𝗺𝗲: 𝗥𝗮𝘁𝗶𝗻𝗴𝘀 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀
+
+This SQL queries analyzes the ratings given by customers to restaurants. This helps to understand the customer choice & restaurants performance better.
+*/
+
+
+--- Q27) Ratings given by customer for restaurants
+SELECT 
+		b.consumer_id,
+		a.name,
+		b.overall_rating,
+		b.food_rating,
+		b.service_rating
+FROM restaurants as a 
+INNER JOIN customer_ratings as b
+ON a.restaurant_id = b.restaurant_id
+ORDER BY b.restaurant_id
+
+
+--- Q28) Average ratings of each restaurant including it's cuisine type
+SELECT 
+		a.name,
+		ROUND(AVG(b.overall_rating),2)as overall_Rating,
+		ROUND(AVG(b.food_rating),2)as food_rating,
+		ROUND(AVG(b.service_rating),2)as service_rating,
+		c.cuisine
+FROM restaurants as a 
+INNER JOIN customer_ratings as b
+ON a.restaurant_id = b.restaurant_id
+INNER JOIN restaurant_cuisines AS c
+ON a.restaurant_id = c.restaurant_id
+GROUP BY a.name,c.cuisine
+ORDER BY a.name
+
+--- Q29) Creating new columns for sentiment analysis
+ALTER TABLE customer_ratings ADD COLUMN overall_senti Varchar(50)
+ALTER TABLE customer_ratings ADD COLUMN food_senti Varchar(50)
+ALTER TABLE customer_ratings ADD COLUMN service_senti Varchar(50)
+
+SELECT * FROM customer_ratings
+
+
+--- Q30) Updating the new columns with the sentiments 
+
+UPDATE customer_ratings
+SET overall_senti = CASE WHEN overall_rating = 0 then 'Negative'
+					 	 WHEN overall_rating = 1 then 'Neutral'	
+					 	 WHEN overall_rating = 2 then 'Positive'
+					  	 END
+WHERE overall_senti is null
+
+UPDATE customer_ratings
+SET food_senti = CASE 	 WHEN food_rating = 0 then 'Negative'
+					 	 WHEN food_rating = 1 then 'Neutral'	
+					 	 WHEN food_rating = 2 then 'Positive'
+					  	 END
+WHERE food_senti is null
+
+UPDATE customer_ratings
+SET service_senti = CASE WHEN service_rating = 0 then 'Negative'
+					 	 WHEN service_rating = 1 then 'Neutral'	
+					 	 WHEN service_rating = 2 then 'Positive'
+					  	 END
+WHERE service_senti is null
+
+
+--- Q31) Conduct a sentimental analysis of total count of customers
+CREATE VIEW overall AS (
+SELECT 
+		overall_senti,
+		count(consumer_id) as total_customers
+FROM 	customer_ratings
+GROUP BY overall_senti
+
+
+CREATE VIEW food AS (
+SELECT 
+		food_senti,
+		count(consumer_id) as total_customers
+FROM 	customer_ratings
+GROUP BY food_senti
+
+
+CREATE VIEW service AS (
+SELECT 
+		service_senti,
+		count(consumer_id) as total_customers
+FROM 	customer_ratings
+GROUP BY service_senti
+
+
+SELECT
+		a.overall_senti as Sentiment,
+		a.total_customers as Overall_Rating,
+		b.total_customers as food_Rating,
+		c.total_customers as service_Rating
+FROM overall as a
+INNER JOIN food as b
+ON a.overall_senti = b.food_senti
+INNER JOIN service as c
+ON a.overall_senti = c.service_senti
+
+
+--- Q32) List of Customers visiting local or outside restaurants
+
+SELECT 
+		a.consumer_id,
+		b.city as customer_city,
+		c.name,
+		c.city as restaurant_city,
+		a.overall_senti,
+		a.food_senti,
+		a.service_senti,
+		CASE WHEN b.city = c.city THEN 'Local' ELSE 'Outside' END as Location_preference
+FROM customer_ratings as a
+INNER JOIN customer_details as b
+ON a.consumer_id = b.consumer_id
+INNER JOIN restaurants as c
+ON a.restaurant_id = c.restaurant_id
+
+
+--- Q33) Count of customers visiting local and outside restaurants
+
+SELECT 
+		Location_preference,
+		count(*) as total_customers,
+		count( distinct id) as distinct_customers
+FROM 	(SELECT 
+				a.consumer_id as id,
+				b.city as customer_city,
+				c.name,
+				c.city as restaurant_city,
+				a.overall_senti,
+				a.food_senti,
+				a.service_senti,
+				CASE WHEN b.city = c.city THEN 'Local' ELSE 'Outside' END as Location_preference
+			FROM customer_ratings as a
+			INNER JOIN customer_details as b
+			ON a.consumer_id = b.consumer_id
+			INNER JOIN restaurants as c
+			ON a.restaurant_id = c.restaurant_id )	as cte
+GROUP BY 	Location_preference				
+		
+		
+--- Q34) Trend of customers visiting outside restaurants
+
+SELECT 
+		customer_id,
+		customer_city,
+		restaurant_city,
+		concat_ws(' - ',customer_city , restaurant_city) as direction,
+		restaurant_name		
+FROM 	(SELECT 
+				a.consumer_id as customer_id,
+				b.city as customer_city,
+				c.name as restaurant_name,
+				c.city as restaurant_city,
+				a.overall_senti,
+				a.food_senti,
+				a.service_senti,
+				CASE WHEN b.city = c.city THEN 'Local' ELSE 'Outside' END as Location_preference
+			FROM customer_ratings as a
+			INNER JOIN customer_details as b
+			ON a.consumer_id = b.consumer_id
+			INNER JOIN restaurants as c
+			ON a.restaurant_id = c.restaurant_id )	as cte
+WHERE 	Location_preference = 'Outside'
+
+		
+		
+--- Q35) Count of direction trend from above query
+
+SELECT
+		direction,
+		count(customer_id) as total_customers
+
+FROM  (SELECT 
+		customer_id,
+		customer_city,
+		restaurant_city,
+		concat_ws(' - ',customer_city , restaurant_city) as direction,
+		restaurant_name
+		
+		FROM 	(SELECT 
+					a.consumer_id as customer_id,
+					b.city as customer_city,
+					c.name as restaurant_name,
+					c.city as restaurant_city,
+					a.overall_senti,
+					a.food_senti,
+					a.service_senti,
+				CASE WHEN b.city = c.city THEN 'Local' ELSE 'Outside' END as Location_preference
+				FROM customer_ratings as a
+			 	INNER JOIN customer_details as b
+				ON a.consumer_id = b.consumer_id
+				INNER JOIN restaurants as c
+				ON a.restaurant_id = c.restaurant_id )	as cte
+		WHERE 	Location_preference = 'Outside' ) cte2
+GROUP BY direction
+
+
+--- Q36) Cuisine preferences vs cuisine consumed
+
+SELECT 
+		a.consumer_id,
+		string_agg(b.preferred_cuisine,',') as customer_preferences,
+		d.name,
+		c.cuisine as restaurant_cuisine
+FROM customer_ratings as a
+INNER JOIN customer_preference as b
+ON a.consumer_id = b.consumer_id
+INNER JOIN restaurant_cuisines as c
+ON a.restaurant_id = c.restaurant_id
+INNER JOIN restaurants as d
+ON a.restaurant_id = d.restaurant_id
+GROUP BY a.consumer_id, d.name, c.cuisine
+
+
+--- Q37) Best restaurants for each cuisines by different ratings
+CREATE VIEW average_analysis as (
+SELECT 
+		a.name,
+		ROUND(AVG(b.overall_rating),2)as overall_Rating,
+		ROUND(AVG(b.food_rating),2)as food_rating,
+		ROUND(AVG(b.service_rating),2)as service_rating,
+		c.cuisine
+FROM restaurants as a 
+INNER JOIN customer_ratings as b
+ON a.restaurant_id = b.restaurant_id
+INNER JOIN restaurant_cuisines AS c
+ON a.restaurant_id = c.restaurant_id
+GROUP BY a.name,c.cuisine
+ORDER BY c.cuisine)
+	
+
+CREATE VIEW best  as (
+SELECT 
+		cuisine,
+		First_value(name) OVER(partition by cuisine ORDER BY overall_rating desc) as best_for_overall,
+		First_value(name) OVER(partition by cuisine ORDER BY food_rating desc) as best_for_food,
+		First_value(name) OVER(partition by cuisine ORDER BY service_rating desc) as best_for_service
+FROM average_analysis
+
+SELECT 
+		*
+FROM best
+GROUP BY cuisine, best_for_overall, best_for_food, best_for_service
+ORDER BY cuisine	
+
+	
+--- Q38) Bad restaurants for each cuisines by different ratings
+	
+CREATE VIEW count_cuisines as (
+SELECT 	
+		cuisine,
+		count(cuisine)	as count
+FROM average_analysis
+GROUP BY cuisine	)	
+		
+CREATE VIEW bad as (
+SELECT 
+		cuisine,
+		First_value(name) OVER(partition by cuisine ORDER BY overall_rating ) as bad_for_overall,
+		First_value(name) OVER(partition by cuisine ORDER BY food_rating ) as bad_for_food,
+		First_value(name) OVER(partition by cuisine ORDER BY service_rating ) as bad_for_service	
+FROM ( 	
+		SELECT 
+				a.name,
+				ROUND(AVG(a.overall_rating),2)as overall_Rating,
+				ROUND(AVG(a.food_rating),2)as food_rating,
+				ROUND(AVG(a.service_rating),2)as service_rating,
+				a.cuisine,
+				cc.count
+		FROM average_analysis as a
+		INNER JOIN count_cuisines as cc
+		ON a.cuisine = cc.cuisine
+		WHERE cc.count > 1	
+		GROUP BY a.name,a.cuisine,cc.count
+		ORDER BY a.cuisine	) as least )
+
+
+SELECT 
+		*
+FROM bad
+GROUP BY cuisine, bad_for_overall, bad_for_food, bad_for_service
+ORDER BY cuisine	
+
+	
+--- Q39) Best cuisines by different ratings
+	
+SELECT 
+		First_value(cuisine) OVER(ORDER BY overall_rating desc) as overall,
+		First_value(cuisine) OVER(ORDER BY food_rating desc) as food,
+		First_value(cuisine) OVER(ORDER BY service_rating desc) as service
+FROM average_analysis
+LIMIT 1	
+
+
+--- Q40) Total customers with highest ratings in all different criteria
+SELECT 
+		count(consumer_id) as total_customers
+FROM 	customer_ratings
+WHERE 	overall_rating = 2 and
+		food_rating = 2 and
+		service_rating = 2
